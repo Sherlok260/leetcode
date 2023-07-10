@@ -14,39 +14,33 @@ public class PathSumTreeNode {
     }
     public static boolean hasPathSum(TreeNode root, int targetSum) {
         if(root == null) return false;
-        helperTreeNode(root, targetSum);
-        System.out.println(summ);
-        if(summ == targetSum) {
+
+        if(helperTreeNode(root, targetSum)) {
+            System.out.println(summ);
             summ = 0;
             return true;
         }
         else {
+            System.out.println(summ);
             summ = 0;
             return false;
         }
     }
 
     static int summ = 0;
-    public static void helperTreeNode(TreeNode node, int targetSum) {
-
-        if (node != null) {
-            if(node.left != null && node.left.left != null) {
-                summ += node.val;
-                helperTreeNode(node.left, targetSum);
-            } else {
-                summ += node.val;
-                if(node.left != null) {
-                    if(summ + node.left.val == targetSum) {
-                        summ += targetSum;
-                        node = null;
-                    }
-                } else if(node.right != null) if (summ + node.right.val == targetSum) {
-                        summ += targetSum;
-                        node = null;
-                    }
-                }
-            }
+    static boolean isSumm = false;
+    public static boolean helperTreeNode(TreeNode node, int targetSum) {
+        if(node != null && node.left != null && node.left.left != null) {
+            summ += node.val;
+            helperTreeNode(node.left, targetSum);
+        } else {
+            summ += node.val;
+            if(node.left != null && summ + node.left.val == targetSum) isSumm = true;
+            else if(node.right != null && summ + node.right.val == targetSum) isSumm = true;
+            else isSumm = false;
         }
+        return isSumm;
+    }
 
     public static void main(String[] args) {
         TreeNode first = new TreeNode(5,
@@ -61,7 +55,6 @@ public class PathSumTreeNode {
 
         TreeNode node = new TreeNode(1, new TreeNode(2, null, null), null);
 
-        System.out.println(hasPathSum(first, 22));
     }
 
 }
