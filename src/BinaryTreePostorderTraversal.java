@@ -19,15 +19,15 @@ public class BinaryTreePostorderTraversal {
 
     public void addLast(TreeNode node, int val) {
 
-        while (node.right != null) {
-            node.val
-        }
+//        while (node.right != null) {
+//            node.val
+//        }
 
     }
 
-    public static List<Integer> postorderTraversal(TreeNode root) {
-
-    }
+//    public static List<Integer> postorderTraversal(TreeNode root) {
+//
+//    }
 
     public static void main(String[] args) {
 
