@@ -17,6 +17,7 @@ public class ClimbingStairs {
                     result = (int) factorial(item_2, item_1, item_1 + item_2);
                     count += result;
                 }
+//                System.out.println(result);
                 item_2 = item_2 - 1;
                 item_1 = item_1 + 2;
             }
@@ -32,6 +33,7 @@ public class ClimbingStairs {
                     result = (int) factorial(item_2, item_1, item_1 + item_2);
                     count += result;
                 }
+//                System.out.println(result);
                 item_2 = item_2 - 1;
                 item_1 = item_1 + 2;
             }
@@ -54,25 +56,31 @@ public class ClimbingStairs {
         }
 
         Iterator<Integer> i = cc.iterator();
-        Iterator<Integer> j = aa.iterator();
+
         List<Integer> toAdd = new ArrayList<>();
         while (i.hasNext()) {
+            Iterator<Integer> j = aa.iterator();
+            boolean l = false;
+            int ii = i.next();
             while (j.hasNext()) {
-                int ii = i.next();
                 int jj = j.next();
                 if(ii % jj == 0) {
-                    i.remove();
                     toAdd.add(ii/jj);
+                    i.remove();
                     j.remove();
-                    continue;
+                    l = true;
+                    break;
                 }
             }
+            if(l) continue;
 
         }
 
-        cc.addAll(toAdd);
-
         for(Integer iii: cc) {
+            r *= iii;
+        }
+
+        for(Integer iii: toAdd) {
             r *= iii;
         }
 
@@ -84,19 +92,23 @@ public class ClimbingStairs {
 
     }
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         int n = 45;
+        System.out.println();
+
         System.out.println(climbStairs(n));
 
-//        System.out.println(factorial(17, 30));
-//        System.out.println((int) (factorial(17, 30) / factorial(1, 14)));
+        System.out.println();
 
-//        int l = 1134903170;
-//        System.out.println(l);
-//        System.out.println(factorial(18,26));
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        System.out.println(totalTime);
 
-//        System.out.println(factorial(14, 16, 30));
+//        System.out.println(factorial(14, 17, 31));
 
     }
 }
-//9223372036854775808
-//5769043765476591616
+//1624713994
+//1836311903
+
+//265182525
