@@ -11,6 +11,7 @@ public class IsPalindrom {
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(result);
+        System.gc();
         stringBuilder.reverse();
         return stringBuilder.toString().equals(result) ? true : false;
     }
